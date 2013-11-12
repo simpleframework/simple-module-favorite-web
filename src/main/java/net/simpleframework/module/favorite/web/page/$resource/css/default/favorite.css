@@ -1,0 +1,34 @@
+.FavoritesExistPage {
+	padding-left: 90px;
+	background: url("images/warn-green.png") no-repeat 10px 10px;
+}
+
+.FavoritesExistPage .tt {
+	font-size: 9.5pt;
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+.FavoritesExistPage .bb {
+	padding: 10px 10px 0 0;
+	text-align: right;
+}
+
+.FavoritesExistPage .bb a {
+	margin-left: 6px;
+}
+
+.FavoritesExistPage .times {
+	color: #990000;
+	font-family: Georgia;
+	font-size: 14pt;
+	margin-right: 4px;
+}
+
+.FavoritesMgrPage {
+	padding: 10px;
+}
+
+.FavoritesMgrPage>div[id] {
+	width: 80%;
+}

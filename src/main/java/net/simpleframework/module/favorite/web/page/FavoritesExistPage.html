@@ -1,0 +1,25 @@
+<div class="FavoritesExistPage">
+  <div class="tt">#(FavoritesExistPage.0)</div>
+  <div>
+    <a target="_blank" href="${myUrl}">#(FavoritesExistPage.1) &raquo;</a>
+  </div>
+  <div class="bb">
+    <span><span class="times" id="${times}">6</span>#(FavoritesExistPage.2)</span> <a
+      onclick="$win(this).close();" class="simple_btn simple_btn_all">#(Button.Close)</a>
+  </div>
+</div>
+<script type="text/javascript">
+	$ready(function() {
+		var sp = $("${times}");
+		new PeriodicalExecuter(function() {
+			var t = parseInt(sp.innerHTML) - 1;
+			sp.innerHTML = t;
+			if (t <= 0) {
+				this.stop();
+				var win = $win(sp);
+				if (win)
+					win.close();
+			}
+		}, 1);
+	});
+</script>

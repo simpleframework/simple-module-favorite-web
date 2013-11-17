@@ -1,5 +1,6 @@
 package net.simpleframework.module.favorite.web.plugin;
 
+import net.simpleframework.module.favorite.IFavoriteContent;
 import net.simpleframework.module.favorite.plugin.IFavoritePlugin;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.AbstractElement;
@@ -11,6 +12,15 @@ import net.simpleframework.mvc.common.element.AbstractElement;
  *         http://www.simpleframework.net
  */
 public interface IWebFavoritePlugin extends IFavoritePlugin {
+
+	/**
+	 * 获取收藏内容对象
+	 * 
+	 * @param pp
+	 * @param contentId
+	 * @return
+	 */
+	IFavoriteContent getContent(PageParameter pp, Object contentId);
 
 	/**
 	 * 获取收藏的html元素

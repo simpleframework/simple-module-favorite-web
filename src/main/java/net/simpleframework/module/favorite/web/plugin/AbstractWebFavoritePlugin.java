@@ -110,7 +110,7 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 	protected void doInsertFavorite(final PageParameter pp, final Object contentId) {
 		final IFavoriteService service = favoriteContext.getFavoriteService();
 		final Favorite favorite = service.createBean();
-		final IFavoriteContent obj = getContent(contentId);
+		final IFavoriteContent obj = getContent(pp, contentId);
 		favorite.setUserId(pp.getLoginId());
 		favorite.setCreateDate(new Date());
 		service.insertFavorite(getMark(), favorite, obj);

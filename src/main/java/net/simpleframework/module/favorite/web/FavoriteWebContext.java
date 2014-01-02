@@ -25,22 +25,23 @@ public class FavoriteWebContext extends FavoriteContext implements IFavoriteWebC
 
 	@Override
 	protected Module createModule() {
-		return super.createModule().setDefaultFunction(
-				new WebModuleFunction(FavoritesMgrPage.class)
-						.setName(MODULE_NAME + "-FavoritesMgrPage").setText($m("FavoriteWebContext.1")));
+		return super.createModule().setDefaultFunction(FUNC_FAVORITES_MGR);
 	}
-
-	public WebModuleFunction MY_FAVORITE_FUNCTION = (WebModuleFunction) new WebModuleFunction()
-			.setUrl(getUrlsFactory().getMyFavoriteUrl(0)).setName(MODULE_NAME + "-MyFavoritesTPage")
-			.setText($m("FavoriteWebContext.0")).setDisabled(true);
 
 	@Override
 	protected ModuleFunctions getFunctions() {
-		return ModuleFunctions.of(MY_FAVORITE_FUNCTION);
+		return ModuleFunctions.of(FUNC_FAVORITES_MGR, FUNC_MY_FAVORITES);
 	}
 
 	@Override
 	public AbstractElement<?> toMyFavoriteElement(final PageParameter pp) {
-		return new LinkElement(MY_FAVORITE_FUNCTION.getText()).setHref(MY_FAVORITE_FUNCTION.getUrl());
+		return new LinkElement(FUNC_MY_FAVORITES.getText()).setHref(FUNC_MY_FAVORITES.getUrl());
 	}
+
+	public WebModuleFunction FUNC_FAVORITES_MGR = (WebModuleFunction) new WebModuleFunction(
+			FavoritesMgrPage.class).setName(MODULE_NAME + "-FavoritesMgrPage").setText(
+			$m("FavoriteWebContext.1"));
+	public WebModuleFunction FUNC_MY_FAVORITES = (WebModuleFunction) new WebModuleFunction()
+			.setUrl(getUrlsFactory().getMyFavoriteUrl(0)).setName(MODULE_NAME + "-MyFavoritesTPage")
+			.setText($m("FavoriteWebContext.0")).setDisabled(true);
 }

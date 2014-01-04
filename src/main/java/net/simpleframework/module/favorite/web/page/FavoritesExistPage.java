@@ -18,8 +18,8 @@ import net.simpleframework.mvc.template.AbstractTemplatePage;
 public class FavoritesExistPage extends AbstractTemplatePage implements IFavoriteContextAware {
 
 	@Override
-	protected void addImportCSS(final PageParameter pp) {
-		super.addImportCSS(pp);
+	protected void onForward(final PageParameter pp) {
+		super.onForward(pp);
 
 		pp.addImportCSS(FavoritesExistPage.class, "/favorite.css");
 	}

@@ -49,8 +49,10 @@ import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavoriteContextAware {
 
 	@Override
-	protected void addComponents(final PageParameter pp) {
-		super.addComponents(pp);
+	protected void onForward(final PageParameter pp) {
+		super.onForward(pp);
+
+		pp.addImportCSS(FavoritesExistPage.class, "/favorite.css");
 
 		final TablePagerBean tablePager = (TablePagerBean) addComponentBean(pp, "tpFavoritesList",
 				TablePagerBean.class).setShowLineNo(true).setPagerBarLayout(EPagerBarLayout.bottom)
@@ -75,13 +77,6 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 		// 为表格过滤用的用户选择
 		addUserSelectForTbl(pp, "tpFavoritesList");
-	}
-
-	@Override
-	protected void addImportCSS(final PageParameter pp) {
-		super.addImportCSS(pp);
-
-		pp.addImportCSS(FavoritesExistPage.class, "/favorite.css");
 	}
 
 	@Override

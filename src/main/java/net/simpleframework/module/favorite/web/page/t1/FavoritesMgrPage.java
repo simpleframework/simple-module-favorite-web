@@ -111,7 +111,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 	}
 
 	@Override
-	protected TabButtons getTabButtons(final PageParameter pp) {
+	public TabButtons getTabButtons(final PageParameter pp) {
 		return TabButtons.of(new TabButton($m("FavoriteWebContext.1"),
 				((IFavoriteWebContext) context).getUrlsFactory().getFavoritesMgrUrl()));
 	}

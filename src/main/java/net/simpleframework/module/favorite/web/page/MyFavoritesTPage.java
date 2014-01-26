@@ -84,8 +84,8 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		final IFavoritePlugin favoriteMark = getFavoritePlugin(pp);
 		final CategoryItems blocks = CategoryItems.of();
 		for (final IModulePlugin tMark : context.getPluginRegistry().allPlugin()) {
-			final String url = ((IFavoriteWebContext) context).getUrlsFactory().getMyFavoriteUrl(
-					tMark.getMark());
+			final String url = ((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+					MyFavoritesTPage.class, tMark.getMark());
 			final CategoryItem block = new CategoryItem(tMark.getText()).setHref(url);
 			block.setSelected(favoriteMark != null && favoriteMark.getMark() == tMark.getMark());
 			final int num = context.getFavoriteService()
@@ -111,8 +111,8 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 				final LinkElement link = new LinkElementEx(StringUtils.text(
 						favoritePlugin.getCategoryText(categoryId2), $m("MyFavoritesTPage.4")))
 						.setSelected(categoryId2.equals(categoryId)).setHref(
-								((IFavoriteWebContext) context).getUrlsFactory().getMyFavoriteUrl(iMark,
-										"categoryId=" + categoryId2));
+								((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+										MyFavoritesTPage.class, iMark, "categoryId=" + categoryId2));
 				el.append(link,
 						new SupElement("(" + stat.getCount() + ")").setStyle("margin-left: 4px;"),
 						SpanElement.SPACE);
@@ -127,8 +127,8 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		final IFavoritePlugin favoriteMark = MyFavoritesTPage.getFavoritePlugin(pp);
 		final String txt = $m("FavoriteWebContext.0");
 		btns.append(favoriteMark != null ? new LinkElement(txt)
-				.setHref(((IFavoriteWebContext) context).getUrlsFactory().getMyFavoriteUrl(0))
-				: new SpanElement(txt));
+				.setHref(((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+						MyFavoritesTPage.class, 0)) : new SpanElement(txt));
 		if (favoriteMark != null) {
 			btns.add(new SpanElement(favoriteMark.getText()));
 		}

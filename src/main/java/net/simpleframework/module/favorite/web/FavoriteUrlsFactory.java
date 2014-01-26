@@ -1,9 +1,11 @@
 package net.simpleframework.module.favorite.web;
 
-import net.simpleframework.common.web.HttpUtils;
+import net.simpleframework.common.StringUtils;
+import net.simpleframework.module.favorite.web.page.MyFavoritesTPage;
 import net.simpleframework.module.favorite.web.page.t1.FavoritesMgrPage;
 import net.simpleframework.module.favorite.web.page.t2.MyFavoritesPage;
 import net.simpleframework.mvc.AbstractMVCPage;
+import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.UrlsCache;
 
 /**
@@ -14,27 +16,23 @@ import net.simpleframework.mvc.common.UrlsCache;
  */
 public class FavoriteUrlsFactory extends UrlsCache {
 
-	public String getFavoritesMgrUrl(final String params) {
-		return AbstractMVCPage.url(FavoritesMgrPage.class, params);
+	public FavoriteUrlsFactory() {
+		put(MyFavoritesTPage.class, MyFavoritesPage.class);
+
+		put(FavoritesMgrPage.class);
 	}
 
-	public String getFavoritesMgrUrl() {
-		return getFavoritesMgrUrl(null);
+	public String getFavoriteUrl(final PageParameter pp,
+			final Class<? extends AbstractMVCPage> mClass, final int favoriteMark) {
+		return getFavoriteUrl(pp, mClass, favoriteMark, null);
 	}
 
-	public String getMyFavoriteUrl(final int favoriteMark) {
-		return getMyFavoriteUrl(favoriteMark, null);
-	}
-
-	protected Class<? extends AbstractMVCPage> getMyFavoritesPage() {
-		return MyFavoritesPage.class;
-	}
-
-	public String getMyFavoriteUrl(final int favoriteMark, final String params) {
-		String url = AbstractMVCPage.url(getMyFavoritesPage());
-		if (favoriteMark != 0) {
-			url += "?favoriteMark=" + favoriteMark;
-		}
-		return HttpUtils.addParameters(url, params);
+	public String getFavoriteUrl(final PageParameter pp,
+			final Class<? extends AbstractMVCPage> mClass, final int favoriteMark, final String params) {
+		return getUrl(
+				pp,
+				mClass,
+				StringUtils.join(new String[] {
+						favoriteMark == 0 ? null : "favoriteMark=" + favoriteMark, params }, "&"));
 	}
 }

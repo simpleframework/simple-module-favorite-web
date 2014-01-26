@@ -113,14 +113,15 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 	@Override
 	public TabButtons getTabButtons(final PageParameter pp) {
 		return TabButtons.of(new TabButton($m("FavoriteWebContext.1"),
-				((IFavoriteWebContext) context).getUrlsFactory().getFavoritesMgrUrl()));
+				((IFavoriteWebContext) context).getUrlsFactory().getUrl(pp, FavoritesMgrPage.class)));
 	}
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
 		final FavoriteUrlsFactory uFactory = ((IFavoriteWebContext) context).getUrlsFactory();
 		final InputElement select = InputElement.select().setOnchange(
-				"$Actions.loc('" + uFactory.getFavoritesMgrUrl() + "?favoriteMark=' + $F(this));");
+				"$Actions.loc('" + uFactory.getUrl(pp, FavoritesMgrPage.class)
+						+ "?favoriteMark=' + $F(this));");
 		for (final IModulePlugin mark : context.getPluginRegistry().allPlugin()) {
 			final int iMark = mark.getMark();
 			select.addElements(new Option(iMark, mark.getText()).setSelected(iMark == pp

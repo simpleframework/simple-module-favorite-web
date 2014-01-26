@@ -4,6 +4,7 @@ import static net.simpleframework.common.I18n.$m;
 import net.simpleframework.ctx.Module;
 import net.simpleframework.ctx.ModuleFunctions;
 import net.simpleframework.module.favorite.impl.FavoriteContext;
+import net.simpleframework.module.favorite.web.page.MyFavoritesTPage;
 import net.simpleframework.module.favorite.web.page.t1.FavoritesMgrPage;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.AbstractElement;
@@ -42,6 +43,7 @@ public class FavoriteWebContext extends FavoriteContext implements IFavoriteWebC
 			FavoritesMgrPage.class).setName(MODULE_NAME + "-FavoritesMgrPage").setText(
 			$m("FavoriteWebContext.1"));
 	public WebModuleFunction FUNC_MY_FAVORITES = (WebModuleFunction) new WebModuleFunction()
-			.setUrl(getUrlsFactory().getMyFavoriteUrl(0)).setName(MODULE_NAME + "-MyFavoritesTPage")
-			.setText($m("FavoriteWebContext.0")).setDisabled(true);
+			.setUrl(getUrlsFactory().getFavoriteUrl(null, MyFavoritesTPage.class, 0))
+			.setName(MODULE_NAME + "-MyFavoritesTPage").setText($m("FavoriteWebContext.0"))
+			.setDisabled(true);
 }

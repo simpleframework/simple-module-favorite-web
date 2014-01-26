@@ -31,4 +31,7 @@
 
 .FavoritesMgrPage>div[id] {
 	width: 80%;
+	-webkit-box-shadow: 5px 5px 5px #aaa;
+	-moz-box-shadow: 5px 5px 5px #aaa;
+	box-shadow: 5px 5px 5px #aaa;
 }

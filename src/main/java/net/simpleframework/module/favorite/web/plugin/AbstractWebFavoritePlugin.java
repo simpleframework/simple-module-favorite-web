@@ -47,14 +47,15 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 	protected void initComponents(final PageParameter pp, final Object contentId) {
 		// 收藏
 		pp.addComponentBean(COMPONENT_PREFIX + "Save", AjaxRequestBean.class)
-				.setRole(IPermissionConst.ROLE_ALL_ACCOUNT).setHandleClass(AddtoFavoritesHandler.class);
+				.setRole(IPermissionConst.ROLE_ALL_ACCOUNT)
+				.setHandlerClass(AddtoFavoritesHandler.class);
 
 		// 添加一个异常处理组件
 		addExistWindowBean(pp);
 
 		// ajax更新
 		pp.addComponentBean(COMPONENT_PREFIX + "Update", AjaxRequestBean.class)
-				.setUpdateContainerId("favorite_" + contentId).setHandleClass(FavoriteUpdate.class);
+				.setUpdateContainerId("favorite_" + contentId).setHandlerClass(FavoriteUpdate.class);
 	}
 
 	protected WindowBean addExistWindowBean(final PageParameter pp) {

@@ -56,7 +56,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 		final TablePagerBean tablePager = (TablePagerBean) addComponentBean(pp, "tpFavoritesList",
 				TablePagerBean.class).setShowLineNo(true).setPagerBarLayout(EPagerBarLayout.bottom)
-				.setContainerId("list_" + hashId).setHandleClass(FavoritesList.class);
+				.setContainerId("list_" + hashId).setHandlerClass(FavoritesList.class);
 		tablePager
 				.addColumn(
 						new TablePagerColumn("topic", $m("FavoritesMgrPage.0"))

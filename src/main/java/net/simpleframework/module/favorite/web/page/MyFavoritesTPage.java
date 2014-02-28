@@ -63,7 +63,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 				.setJsLoadedCallback("$Actions['MyFavoritesTPage_Tip']();");
 
 		addAjaxRequest(pp, "MyFavoritesTPage_Cancel").setConfirmMessage($m("MyFavoritesTPage.3"))
-				.setHandleMethod("doCancelFavorites");
+				.setHandlerMethod("doCancelFavorites");
 
 		final TooltipBean tooltip = (TooltipBean) addComponentBean(pp, "MyFavoritesTPage_Tip",
 				TooltipBean.class).setRunImmediately(false);

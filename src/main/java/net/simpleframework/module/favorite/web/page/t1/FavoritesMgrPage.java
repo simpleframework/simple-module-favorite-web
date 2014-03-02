@@ -37,6 +37,7 @@ import net.simpleframework.mvc.component.ui.pager.EPagerBarLayout;
 import net.simpleframework.mvc.component.ui.pager.TablePagerBean;
 import net.simpleframework.mvc.component.ui.pager.TablePagerColumn;
 import net.simpleframework.mvc.component.ui.pager.db.AbstractDbTablePagerHandler;
+import net.simpleframework.mvc.template.TemplateUtils;
 import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 
 /**
@@ -160,7 +161,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 						new LinkElement(item.getTopic()).setTarget("_blank").setHref(item.getUrl()));
 			}
 			kv.add("favorites", item.getFavorites());
-			kv.put("userId", toIconUser(cp, favorite.getUserId()));
+			kv.put("userId", TemplateUtils.toIconUser(cp, favorite.getUserId()));
 			kv.put("createDate", favorite.getCreateDate());
 			kv.put(
 					TablePagerColumn.OPE,

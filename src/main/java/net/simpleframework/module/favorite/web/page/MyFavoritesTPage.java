@@ -114,7 +114,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 								((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
 										MyFavoritesTPage.class, iMark, "categoryId=" + categoryId2));
 				el.append(link,
-						new SupElement("(" + stat.getCount() + ")").setStyle("margin-left: 4px;"),
+						new SupElement("(" + stat.getCount() + ")").addStyle("margin-left: 4px;"),
 						SpanElement.SPACE);
 			}
 		}

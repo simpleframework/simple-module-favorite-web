@@ -93,9 +93,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 	@Transaction(context = IFavoriteContext.class)
 	public IForward doDelete(final ComponentParameter cp) {
 		final Object[] ids = StringUtils.split(cp.getParameter("id"));
-		if (ids != null) {
-			context.getFavoriteService().delete(ids);
-		}
+		context.getFavoriteService().delete(ids);
 		final JavascriptForward js = new JavascriptForward("$Actions['tpFavoritesList']();");
 		return js;
 	}

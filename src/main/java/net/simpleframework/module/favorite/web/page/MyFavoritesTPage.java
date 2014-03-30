@@ -169,7 +169,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 						.append(favoriteItem.getTopic()).append("</a>");
 				final String desc = favoriteItem.getDescription();
 				if (StringUtils.hasText(desc)) {
-					sb.append(BlockElement.tip(desc));
+					sb.append(BlockElement.tipText(desc));
 				}
 				kv.put("topic", sb.toString());
 				kv.put("favorites", favoriteItem.getFavorites());

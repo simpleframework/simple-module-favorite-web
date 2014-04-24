@@ -88,8 +88,8 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		final IFavoritePlugin favoriteMark = getFavoritePlugin(pp);
 		final CategoryItems blocks = CategoryItems.of();
 		for (final IModulePlugin tMark : favoriteContext.getPluginRegistry().allPlugin()) {
-			final String url = ((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
-					MyFavoritesTPage.class, tMark.getMark());
+			final String url = ((IFavoriteWebContext) favoriteContext).getUrlsFactory()
+					.getFavoriteUrl(pp, MyFavoritesTPage.class, tMark.getMark());
 			final CategoryItem block = new CategoryItem(tMark.getText()).setHref(url);
 			block.setSelected(favoriteMark != null && favoriteMark.getMark() == tMark.getMark());
 			final int num = favoriteContext.getFavoriteService()
@@ -109,8 +109,8 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		if (favoritePlugin != null) {
 			final String categoryId = pp.getParameter("categoryId");
 			final int iMark = favoritePlugin.getMark();
-			for (final CategoryStat stat : favoriteContext.getFavoriteService().queryCategoryItems(iMark,
-					pp.getLoginId())) {
+			for (final CategoryStat stat : favoriteContext.getFavoriteService().queryCategoryItems(
+					iMark, pp.getLoginId())) {
 				final Object categoryId2 = stat.getCategoryId();
 				final LinkElement link = new LinkElementEx(StringUtils.text(
 						favoritePlugin.getCategoryText(categoryId2), $m("MyFavoritesTPage.4")))
@@ -162,7 +162,8 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
 			final KVMap kv = new KVMap();
 			final Favorite favorite = (Favorite) dataObject;
-			final FavoriteItem favoriteItem = favoriteContext.getFavoriteService().getFavoriteItem(favorite);
+			final FavoriteItem favoriteItem = favoriteContext.getFavoriteService().getFavoriteItem(
+					favorite);
 			if (favoriteItem != null) {
 				final StringBuilder sb = new StringBuilder();
 				sb.append("<a target='_blank' href='").append(favoriteItem.getUrl()).append("'>")

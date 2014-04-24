@@ -29,7 +29,7 @@ public class FavoritesExistPage extends AbstractTemplatePage implements IFavorit
 		final int favoriteMark = Convert.toInt(pp.getParameter("favoriteMark"));
 		return ((KVMap) super.createVariables(pp)).add(
 				"myUrl",
-				((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+				((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
 						MyFavoritesTPage.class, favoriteMark)).add("times", "times_" + hashId);
 	}
 }

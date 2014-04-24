@@ -82,7 +82,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 	@Override
 	public String getRole(final PageParameter pp) {
-		return context.getManagerRole();
+		return favoriteContext.getManagerRole();
 	}
 
 	@Override
@@ -93,13 +93,13 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 	@Transaction(context = IFavoriteContext.class)
 	public IForward doDelete(final ComponentParameter cp) {
 		final Object[] ids = StringUtils.split(cp.getParameter("id"));
-		context.getFavoriteService().delete(ids);
+		favoriteContext.getFavoriteService().delete(ids);
 		final JavascriptForward js = new JavascriptForward("$Actions['tpFavoritesList']();");
 		return js;
 	}
 
 	private static IFavoritePlugin getFavoriteMark(final PageParameter pp) {
-		return context.getPluginRegistry().getPlugin(pp.getIntParameter("favoriteMark"));
+		return favoriteContext.getPluginRegistry().getPlugin(pp.getIntParameter("favoriteMark"));
 	}
 
 	@Override
@@ -112,16 +112,16 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 	@Override
 	public TabButtons getTabButtons(final PageParameter pp) {
 		return TabButtons.of(new TabButton($m("FavoriteWebContext.1"),
-				((IFavoriteWebContext) context).getUrlsFactory().getUrl(pp, FavoritesMgrPage.class)));
+				((IFavoriteWebContext) favoriteContext).getUrlsFactory().getUrl(pp, FavoritesMgrPage.class)));
 	}
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
-		final FavoriteUrlsFactory uFactory = ((IFavoriteWebContext) context).getUrlsFactory();
+		final FavoriteUrlsFactory uFactory = ((IFavoriteWebContext) favoriteContext).getUrlsFactory();
 		final InputElement select = InputElement.select().setOnchange(
 				"$Actions.loc('" + uFactory.getUrl(pp, FavoritesMgrPage.class)
 						+ "?favoriteMark=' + $F(this));");
-		for (final IModulePlugin mark : context.getPluginRegistry().allPlugin()) {
+		for (final IModulePlugin mark : favoriteContext.getPluginRegistry().allPlugin()) {
 			final int iMark = mark.getMark();
 			select.addElements(new Option(iMark, mark.getText()).setSelected(iMark == pp
 					.getIntParameter("favoriteMark")));
@@ -146,14 +146,14 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 			if (oMark != null) {
 				cp.addFormParameter("favoriteMark", oMark.getMark());
 			}
-			return context.getFavoriteService().queryFavorites(oMark.getMark(), null, null);
+			return favoriteContext.getFavoriteService().queryFavorites(oMark.getMark(), null, null);
 		}
 
 		@Override
 		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
 			final KVMap kv = new KVMap();
 			final Favorite favorite = (Favorite) dataObject;
-			final FavoriteItem item = context.getFavoriteService().getFavoriteItem(favorite);
+			final FavoriteItem item = favoriteContext.getFavoriteService().getFavoriteItem(favorite);
 			if (item != null) {
 				kv.put("topic",
 						new LinkElement(item.getTopic()).setTarget("_blank").setHref(item.getUrl()));

@@ -79,7 +79,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 
 	@Transaction(context = IFavoriteContext.class)
 	public IForward doCancelFavorites(final ComponentParameter cp) {
-		context.getFavoriteService().delete(cp.getParameter("id"));
+		favoriteContext.getFavoriteService().delete(cp.getParameter("id"));
 		return new JavascriptForward("$Actions['MyFavoritesTPage_tbl']();");
 	}
 
@@ -87,12 +87,12 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 	protected CategoryItems getCategoryList(final PageParameter pp) {
 		final IFavoritePlugin favoriteMark = getFavoritePlugin(pp);
 		final CategoryItems blocks = CategoryItems.of();
-		for (final IModulePlugin tMark : context.getPluginRegistry().allPlugin()) {
-			final String url = ((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+		for (final IModulePlugin tMark : favoriteContext.getPluginRegistry().allPlugin()) {
+			final String url = ((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
 					MyFavoritesTPage.class, tMark.getMark());
 			final CategoryItem block = new CategoryItem(tMark.getText()).setHref(url);
 			block.setSelected(favoriteMark != null && favoriteMark.getMark() == tMark.getMark());
-			final int num = context.getFavoriteService()
+			final int num = favoriteContext.getFavoriteService()
 					.queryFavorites(tMark.getMark(), pp.getLoginId(), null).getCount();
 			if (num > 0) {
 				block.setNum(new SupElement(num));
@@ -109,13 +109,13 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		if (favoritePlugin != null) {
 			final String categoryId = pp.getParameter("categoryId");
 			final int iMark = favoritePlugin.getMark();
-			for (final CategoryStat stat : context.getFavoriteService().queryCategoryItems(iMark,
+			for (final CategoryStat stat : favoriteContext.getFavoriteService().queryCategoryItems(iMark,
 					pp.getLoginId())) {
 				final Object categoryId2 = stat.getCategoryId();
 				final LinkElement link = new LinkElementEx(StringUtils.text(
 						favoritePlugin.getCategoryText(categoryId2), $m("MyFavoritesTPage.4")))
 						.setSelected(categoryId2.equals(categoryId)).setHref(
-								((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+								((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
 										MyFavoritesTPage.class, iMark, "categoryId=" + categoryId2));
 				el.append(link,
 						new SupElement("(" + stat.getCount() + ")").addStyle("margin-left: 4px;"),
@@ -131,7 +131,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		final IFavoritePlugin favoriteMark = MyFavoritesTPage.getFavoritePlugin(pp);
 		final String txt = $m("FavoriteWebContext.0");
 		btns.append(favoriteMark != null ? new LinkElement(txt)
-				.setHref(((IFavoriteWebContext) context).getUrlsFactory().getFavoriteUrl(pp,
+				.setHref(((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
 						MyFavoritesTPage.class, 0)) : new SpanElement(txt));
 		if (favoriteMark != null) {
 			btns.add(new SpanElement(favoriteMark.getText()));
@@ -140,7 +140,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 	}
 
 	public static IFavoritePlugin getFavoritePlugin(final PageParameter pp) {
-		return context.getPluginRegistry().getPlugin(pp.getIntParameter("favoriteMark"));
+		return favoriteContext.getPluginRegistry().getPlugin(pp.getIntParameter("favoriteMark"));
 	}
 
 	public static class FavoriteList extends AbstractDbTablePagerHandler {
@@ -154,7 +154,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 			if (StringUtils.hasText(categoryId)) {
 				cp.addFormParameter("categoryId", categoryId);
 			}
-			return context.getFavoriteService().queryFavorites(
+			return favoriteContext.getFavoriteService().queryFavorites(
 					favoriteMark != null ? favoriteMark.getMark() : 0, cp.getLoginId(), categoryId);
 		}
 
@@ -162,7 +162,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
 			final KVMap kv = new KVMap();
 			final Favorite favorite = (Favorite) dataObject;
-			final FavoriteItem favoriteItem = context.getFavoriteService().getFavoriteItem(favorite);
+			final FavoriteItem favoriteItem = favoriteContext.getFavoriteService().getFavoriteItem(favorite);
 			if (favoriteItem != null) {
 				final StringBuilder sb = new StringBuilder();
 				sb.append("<a target='_blank' href='").append(favoriteItem.getUrl()).append("'>")

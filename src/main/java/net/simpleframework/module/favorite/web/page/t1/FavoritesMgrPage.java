@@ -82,7 +82,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 	@Override
 	public String getRole(final PageParameter pp) {
-		return favoriteContext.getManagerRole();
+		return favoriteContext.getModule().getManagerRole();
 	}
 
 	@Override

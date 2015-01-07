@@ -39,10 +39,10 @@ public class FavoriteWebContext extends FavoriteContext implements IFavoriteWebC
 		return new LinkElement(FUNC_MY_FAVORITES.getText()).setHref(FUNC_MY_FAVORITES.getUrl());
 	}
 
-	public WebModuleFunction FUNC_FAVORITES_MGR = (WebModuleFunction) new WebModuleFunction(
+	public WebModuleFunction FUNC_FAVORITES_MGR = (WebModuleFunction) new WebModuleFunction(this,
 			FavoritesMgrPage.class).setName(MODULE_NAME + "-FavoritesMgrPage").setText(
 			$m("FavoriteWebContext.1"));
-	public WebModuleFunction FUNC_MY_FAVORITES = (WebModuleFunction) new WebModuleFunction()
+	public WebModuleFunction FUNC_MY_FAVORITES = (WebModuleFunction) new WebModuleFunction(this)
 			.setUrl(getUrlsFactory().getFavoriteUrl(null, MyFavoritesTPage.class, 0))
 			.setName(MODULE_NAME + "-MyFavoritesTPage").setText($m("FavoriteWebContext.0"))
 			.setDisabled(true);

@@ -9,7 +9,7 @@ import net.simpleframework.common.ID;
 import net.simpleframework.common.object.ObjectFactory;
 import net.simpleframework.common.web.html.HtmlUtils;
 import net.simpleframework.ctx.InjectCtx;
-import net.simpleframework.ctx.permission.IPermissionConst;
+import net.simpleframework.ctx.permission.PermissionConst;
 import net.simpleframework.ctx.trans.Transaction;
 import net.simpleframework.module.common.content.AbstractContentBean;
 import net.simpleframework.module.common.plugin.AbstractModulePlugin;
@@ -47,8 +47,7 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 	protected void initComponents(final PageParameter pp, final Object contentId) {
 		// 收藏
 		pp.addComponentBean(COMPONENT_PREFIX + "Save", AjaxRequestBean.class)
-				.setRole(IPermissionConst.ROLE_ALL_ACCOUNT)
-				.setHandlerClass(AddtoFavoritesHandler.class);
+				.setRole(PermissionConst.ROLE_ALL_ACCOUNT).setHandlerClass(AddtoFavoritesHandler.class);
 
 		// 添加一个异常处理组件
 		addExistWindowBean(pp);

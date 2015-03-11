@@ -3,7 +3,7 @@ package net.simpleframework.module.favorite.web.page.t2;
 import java.io.IOException;
 import java.util.Map;
 
-import net.simpleframework.ctx.permission.IPermissionConst;
+import net.simpleframework.ctx.permission.PermissionConst;
 import net.simpleframework.module.favorite.IFavoriteContextAware;
 import net.simpleframework.module.favorite.web.page.MyFavoritesTPage;
 import net.simpleframework.mvc.PageMapping;
@@ -34,6 +34,6 @@ public class MyFavoritesPage extends T2TemplatePage implements IFavoriteContextA
 
 	@Override
 	public String getRole(final PageParameter pp) {
-		return IPermissionConst.ROLE_ALL_ACCOUNT;
+		return PermissionConst.ROLE_ALL_ACCOUNT;
 	}
 }

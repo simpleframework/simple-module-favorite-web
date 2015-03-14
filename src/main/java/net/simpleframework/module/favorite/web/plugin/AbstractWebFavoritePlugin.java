@@ -6,7 +6,6 @@ import java.util.Date;
 
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.ID;
-import net.simpleframework.common.object.ObjectFactory;
 import net.simpleframework.common.web.html.HtmlUtils;
 import net.simpleframework.ctx.InjectCtx;
 import net.simpleframework.ctx.permission.PermissionConst;
@@ -88,7 +87,7 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 		final StringBuilder sb = new StringBuilder();
 		sb.append("$Actions['").append(COMPONENT_PREFIX).append("Save']('favoriteMark=")
 				.append(getMark()).append("&contentId=").append(contentId).append("&plugin=")
-				.append(ObjectFactory.original(getClass()).getName()).append("');");
+				.append(getOriginalClass().getName()).append("');");
 		return sb.toString();
 	}
 

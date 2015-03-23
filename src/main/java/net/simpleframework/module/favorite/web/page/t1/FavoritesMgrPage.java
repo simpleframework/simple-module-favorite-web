@@ -24,7 +24,6 @@ import net.simpleframework.mvc.JavascriptForward;
 import net.simpleframework.mvc.PageMapping;
 import net.simpleframework.mvc.PageParameter;
 import net.simpleframework.mvc.common.element.ButtonElement;
-import net.simpleframework.mvc.common.element.ETextAlign;
 import net.simpleframework.mvc.common.element.ElementList;
 import net.simpleframework.mvc.common.element.InputElement;
 import net.simpleframework.mvc.common.element.LinkButton;
@@ -59,15 +58,11 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 				TablePagerBean.class).setShowLineNo(true).setPagerBarLayout(EPagerBarLayout.bottom)
 				.setContainerId("list_" + hashId).setHandlerClass(FavoritesList.class);
 		tablePager
-				.addColumn(
-						new TablePagerColumn("topic", $m("FavoritesMgrPage.0"))
-								.setTextAlign(ETextAlign.left))
+				.addColumn(new TablePagerColumn("topic", $m("FavoritesMgrPage.0")))
 				.addColumn(
 						new TablePagerColumn("favorites", $m("FavoritesMgrPage.4"), 80)
 								.setPropertyClass(Integer.class))
-				.addColumn(
-						createUserColumn(pp, "userId", $m("FavoritesMgrPage.1"), "tpFavoritesList")
-								.setTextAlign(ETextAlign.left))
+				.addColumn(createUserColumn(pp, "userId", $m("FavoritesMgrPage.1"), "tpFavoritesList"))
 				.addColumn(
 						new TablePagerColumn("createDate", $m("FavoritesMgrPage.2"), 120)
 								.setPropertyClass(Date.class))

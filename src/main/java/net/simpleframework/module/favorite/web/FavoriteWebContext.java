@@ -27,10 +27,10 @@ public class FavoriteWebContext extends FavoriteContext implements IFavoriteWebC
 	protected ModuleFunctions getFunctions() {
 		return ModuleFunctions.of(
 				new WebModuleFunction(this, FavoritesMgrPage.class).setName(
-						MODULE_NAME + "-FavoritesMgrPage").setText($m("FavoriteWebContext.1")),
+						MODULE_NAME + "-FavoritesMgrPage").setText($m("FavoriteWebContext.0")),
 				new WebModuleFunction(this)
 						.setUrl(getUrlsFactory().getFavoriteUrl(null, MyFavoritesTPage.class, 0))
-						.setName(MODULE_NAME + "-MyFavoritesTPage").setText($m("FavoriteWebContext.0"))
+						.setName(MODULE_NAME + "-MyFavoritesTPage").setText($m("FavoriteContext.0"))
 						.setDisabled(true));
 	}
 

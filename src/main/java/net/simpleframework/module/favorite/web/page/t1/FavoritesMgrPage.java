@@ -49,7 +49,7 @@ import net.simpleframework.mvc.template.t1.T1ResizedTemplatePage;
 public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavoriteContextAware {
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		pp.addImportCSS(FavoritesExistPage.class, "/favorite.css");

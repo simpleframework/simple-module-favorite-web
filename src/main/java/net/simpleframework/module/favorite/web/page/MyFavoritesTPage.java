@@ -53,7 +53,7 @@ import net.simpleframework.mvc.template.struct.NavigationButtons;
 public class MyFavoritesTPage extends Category_ListPage implements IFavoriteContextAware {
 
 	@Override
-	protected void onForward(final PageParameter pp) {
+	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, "MyFavoritesTPage_tbl",

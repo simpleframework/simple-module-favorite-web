@@ -3,7 +3,6 @@ package net.simpleframework.module.favorite.web.page.t1;
 import static net.simpleframework.common.I18n.$m;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.Map;
 
 import net.simpleframework.ado.query.IDataQuery;
@@ -63,9 +62,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 						new TablePagerColumn("favorites", $m("FavoritesMgrPage.4"), 80)
 								.setPropertyClass(Integer.class))
 				.addColumn(createUserColumn(pp, "userId", $m("FavoritesMgrPage.1"), "tpFavoritesList"))
-				.addColumn(
-						new TablePagerColumn("createDate", $m("FavoritesMgrPage.2"), 120)
-								.setPropertyClass(Date.class))
+				.addColumn(TablePagerColumn.DATE("createDate", $m("FavoritesMgrPage.2")))
 				.addColumn(TablePagerColumn.OPE().setWidth(80));
 
 		// delete

@@ -2,7 +2,6 @@ package net.simpleframework.module.favorite.web.page;
 
 import static net.simpleframework.common.I18n.$m;
 
-import java.util.Date;
 import java.util.Map;
 
 import net.simpleframework.ado.query.IDataQuery;
@@ -58,10 +57,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, "MyFavoritesTPage_tbl",
 				FavoriteList.class).setShowHead(true).setShowCheckbox(true);
-		tablePager
-				.addColumn(
-						new TablePagerColumn("createDate", $m("MyFavoritesTPage.0"), 120)
-								.setPropertyClass(Date.class))
+		tablePager.addColumn(TablePagerColumn.DATE("createDate", $m("MyFavoritesTPage.0")))
 				.addColumn(new TablePagerColumn("favorites", $m("MyFavoritesTPage.1"), 80))
 				.addColumn(TablePagerColumn.OPE().setWidth(80))
 				.setJsLoadedCallback("$Actions['MyFavoritesTPage_Tip']();");

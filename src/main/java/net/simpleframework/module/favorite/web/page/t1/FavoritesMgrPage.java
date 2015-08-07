@@ -63,7 +63,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 								.setPropertyClass(Integer.class))
 				.addColumn(createUserColumn(pp, "userId", $m("FavoritesMgrPage.1"), "tpFavoritesList"))
 				.addColumn(TablePagerColumn.DATE("createDate", $m("FavoritesMgrPage.2")))
-				.addColumn(TablePagerColumn.OPE().setWidth(80));
+				.addColumn(TablePagerColumn.OPE(80));
 
 		// delete
 		addDeleteAjaxRequest(pp, "FavoritesMgrPage_delete");

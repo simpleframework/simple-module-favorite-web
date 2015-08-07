@@ -59,7 +59,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 				FavoriteList.class).setShowHead(true).setShowCheckbox(true);
 		tablePager.addColumn(TablePagerColumn.DATE("createDate", $m("MyFavoritesTPage.0")))
 				.addColumn(new TablePagerColumn("favorites", $m("MyFavoritesTPage.1"), 80))
-				.addColumn(TablePagerColumn.OPE().setWidth(80))
+				.addColumn(TablePagerColumn.OPE(80))
 				.setJsLoadedCallback("$Actions['MyFavoritesTPage_Tip']();");
 
 		addAjaxRequest(pp, "MyFavoritesTPage_Cancel").setConfirmMessage($m("MyFavoritesTPage.3"))

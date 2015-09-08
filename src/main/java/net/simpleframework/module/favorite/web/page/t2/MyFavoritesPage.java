@@ -33,7 +33,7 @@ public class MyFavoritesPage extends T2TemplatePage implements IFavoriteContextA
 	}
 
 	@Override
-	public String getRole(final PageParameter pp) {
+	public String getPageRole(final PageParameter pp) {
 		return PermissionConst.ROLE_ALL_ACCOUNT;
 	}
 }

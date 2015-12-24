@@ -56,7 +56,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		super.onForward(pp);
 
 		final TablePagerBean tablePager = addTablePagerBean(pp, "MyFavoritesTPage_tbl",
-				FavoriteList.class).setShowHead(true).setShowCheckbox(true);
+				FavoriteList.class).setShowHead(true).setResize(false).setShowCheckbox(true);
 		tablePager.addColumn(TablePagerColumn.DATE("createDate", $m("MyFavoritesTPage.0")))
 				.addColumn(new TablePagerColumn("favorites", $m("MyFavoritesTPage.1"), 80))
 				.addColumn(TablePagerColumn.OPE(80))

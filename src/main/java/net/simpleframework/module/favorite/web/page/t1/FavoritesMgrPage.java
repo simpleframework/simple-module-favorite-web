@@ -148,8 +148,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 			final Favorite favorite = (Favorite) dataObject;
 			final FavoriteItem item = favoriteContext.getFavoriteService().getFavoriteItem(favorite);
 			if (item != null) {
-				kv.put("topic",
-						new LinkElement(item.getTopic()).setTarget("_blank").setHref(item.getUrl()));
+				kv.put("topic", LinkElement.BLANK(item.getTopic()).setHref(item.getUrl()));
 			}
 			kv.add("favorites", item.getFavorites());
 			kv.put("userId", TemplateUtils.toIconUser(cp, favorite.getUserId()));

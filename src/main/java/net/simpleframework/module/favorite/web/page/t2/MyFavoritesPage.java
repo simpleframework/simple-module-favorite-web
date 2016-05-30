@@ -28,8 +28,8 @@ public class MyFavoritesPage extends T2TemplatePage implements IFavoriteContextA
 
 	@Override
 	public NavigationButtons getNavigationBar(final PageParameter pp) {
-		return super.getNavigationBar(pp).appendAll(
-				singleton(MyFavoritesTPage.class).getNavigationBar(pp));
+		return super.getNavigationBar(pp)
+				.appendAll(singleton(MyFavoritesTPage.class).getNavigationBar(pp));
 	}
 
 	@Override

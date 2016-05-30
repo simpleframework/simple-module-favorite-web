@@ -105,14 +105,15 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		if (favoritePlugin != null) {
 			final String categoryId = pp.getParameter("categoryId");
 			final int iMark = favoritePlugin.getMark();
-			for (final CategoryStat stat : favoriteContext.getFavoriteService().queryCategoryItems(
-					iMark, pp.getLoginId())) {
+			for (final CategoryStat stat : favoriteContext.getFavoriteService()
+					.queryCategoryItems(iMark, pp.getLoginId())) {
 				final Object categoryId2 = stat.getCategoryId();
-				final LinkElement link = new LinkElementEx(StringUtils.text(
-						favoritePlugin.getCategoryText(categoryId2), $m("MyFavoritesTPage.4")))
-						.setSelected(categoryId2.equals(categoryId)).setHref(
-								((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
-										MyFavoritesTPage.class, iMark, "categoryId=" + categoryId2));
+				final LinkElement link = new LinkElementEx(StringUtils
+						.text(favoritePlugin.getCategoryText(categoryId2), $m("MyFavoritesTPage.4")))
+								.setSelected(categoryId2.equals(categoryId))
+								.setHref(((IFavoriteWebContext) favoriteContext).getUrlsFactory()
+										.getFavoriteUrl(pp, MyFavoritesTPage.class, iMark,
+												"categoryId=" + categoryId2));
 				el.append(link,
 						new SupElement("(" + stat.getCount() + ")").addStyle("margin-left: 4px;"),
 						SpanElement.SPACE);
@@ -126,9 +127,11 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		final NavigationButtons btns = NavigationButtons.of();
 		final IFavoritePlugin favoriteMark = MyFavoritesTPage.getFavoritePlugin(pp);
 		final String txt = $m("FavoriteWebContext.0");
-		btns.append(favoriteMark != null ? new LinkElement(txt)
-				.setHref(((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
-						MyFavoritesTPage.class, 0)) : new SpanElement(txt));
+		btns.append(
+				favoriteMark != null
+						? new LinkElement(txt).setHref(((IFavoriteWebContext) favoriteContext)
+								.getUrlsFactory().getFavoriteUrl(pp, MyFavoritesTPage.class, 0))
+						: new SpanElement(txt));
 		if (favoriteMark != null) {
 			btns.add(new SpanElement(favoriteMark.getText()));
 		}
@@ -155,11 +158,12 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 		}
 
 		@Override
-		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
+		protected Map<String, Object> getRowData(final ComponentParameter cp,
+				final Object dataObject) {
 			final KVMap kv = new KVMap();
 			final Favorite favorite = (Favorite) dataObject;
-			final FavoriteItem favoriteItem = favoriteContext.getFavoriteService().getFavoriteItem(
-					favorite);
+			final FavoriteItem favoriteItem = favoriteContext.getFavoriteService()
+					.getFavoriteItem(favorite);
 			if (favoriteItem != null) {
 				final StringBuilder sb = new StringBuilder();
 				sb.append("<a target='_blank' href='").append(favoriteItem.getUrl()).append("'>")

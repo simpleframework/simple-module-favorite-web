@@ -1,6 +1,7 @@
 package net.simpleframework.module.favorite.web;
 
 import static net.simpleframework.common.I18n.$m;
+
 import net.simpleframework.ctx.ModuleFunctions;
 import net.simpleframework.module.favorite.impl.FavoriteContext;
 import net.simpleframework.module.favorite.web.page.MyFavoritesTPage;
@@ -26,8 +27,8 @@ public class FavoriteWebContext extends FavoriteContext implements IFavoriteWebC
 	@Override
 	protected ModuleFunctions getFunctions() {
 		return ModuleFunctions.of(
-				new WebModuleFunction(this, FavoritesMgrPage.class).setName(
-						MODULE_NAME + "-FavoritesMgrPage").setText($m("FavoriteWebContext.0")),
+				new WebModuleFunction(this, FavoritesMgrPage.class)
+						.setName(MODULE_NAME + "-FavoritesMgrPage").setText($m("FavoriteWebContext.0")),
 				new WebModuleFunction(this)
 						.setUrl(getUrlsFactory().getFavoriteUrl(null, MyFavoritesTPage.class, 0))
 						.setName(MODULE_NAME + "-MyFavoritesTPage").setText($m("FavoriteContext.0"))
@@ -36,8 +37,8 @@ public class FavoriteWebContext extends FavoriteContext implements IFavoriteWebC
 
 	@Override
 	public AbstractElement<?> toMyFavoriteElement(final PageParameter pp) {
-		final WebModuleFunction f = (WebModuleFunction) getFunctionByName(MODULE_NAME
-				+ "-MyFavoritesTPage");
+		final WebModuleFunction f = (WebModuleFunction) getFunctionByName(
+				MODULE_NAME + "-MyFavoritesTPage");
 		return new LinkElement(f.getText()).setHref(f.getUrl());
 	}
 }

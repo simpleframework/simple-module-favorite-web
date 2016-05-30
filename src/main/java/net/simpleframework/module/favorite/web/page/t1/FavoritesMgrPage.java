@@ -55,12 +55,10 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 		final TablePagerBean tablePager = (TablePagerBean) addComponentBean(pp, "tpFavoritesList",
 				TablePagerBean.class).setShowLineNo(true).setPagerBarLayout(EPagerBarLayout.bottom)
-				.setContainerId("list_" + hashId).setHandlerClass(FavoritesList.class);
-		tablePager
-				.addColumn(new TablePagerColumn("topic", $m("FavoritesMgrPage.0")))
-				.addColumn(
-						new TablePagerColumn("favorites", $m("FavoritesMgrPage.4"), 80)
-								.setPropertyClass(Integer.class))
+						.setContainerId("list_" + hashId).setHandlerClass(FavoritesList.class);
+		tablePager.addColumn(new TablePagerColumn("topic", $m("FavoritesMgrPage.0")))
+				.addColumn(new TablePagerColumn("favorites", $m("FavoritesMgrPage.4"), 80)
+						.setPropertyClass(Integer.class))
 				.addColumn(createUserColumn(pp, "userId", $m("FavoritesMgrPage.1"), "tpFavoritesList"))
 				.addColumn(TablePagerColumn.DATE("createDate", $m("FavoritesMgrPage.2")))
 				.addColumn(TablePagerColumn.OPE(80));
@@ -74,7 +72,7 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 	@Override
 	public String getPageRole(final PageParameter pp) {
-		return favoriteContext.getModule().getManagerRole();
+		return getPageManagerRole(pp);
 	}
 
 	@Override
@@ -96,28 +94,27 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 
 	@Override
 	public ElementList getLeftElements(final PageParameter pp) {
-		final ElementList btns = ElementList.of(LinkButton.deleteBtn().setOnclick(
-				"$Actions['tpFavoritesList'].doAct('FavoritesMgrPage_delete');"));
+		final ElementList btns = ElementList.of(LinkButton.deleteBtn()
+				.setOnclick("$Actions['tpFavoritesList'].doAct('FavoritesMgrPage_delete');"));
 		return btns;
 	}
 
 	@Override
 	public TabButtons getTabButtons(final PageParameter pp) {
-		return TabButtons.of(new TabButton($m("FavoriteWebContext.1"),
-				((IFavoriteWebContext) favoriteContext).getUrlsFactory().getUrl(pp,
-						FavoritesMgrPage.class)));
+		return TabButtons
+				.of(new TabButton($m("FavoriteWebContext.1"), ((IFavoriteWebContext) favoriteContext)
+						.getUrlsFactory().getUrl(pp, FavoritesMgrPage.class)));
 	}
 
 	@Override
 	public ElementList getRightElements(final PageParameter pp) {
 		final FavoriteUrlsFactory uFactory = ((IFavoriteWebContext) favoriteContext).getUrlsFactory();
-		final InputElement select = InputElement.select().setOnchange(
-				"$Actions.loc('" + uFactory.getUrl(pp, FavoritesMgrPage.class)
-						+ "?favoriteMark=' + $F(this));");
+		final InputElement select = InputElement.select().setOnchange("$Actions.loc('"
+				+ uFactory.getUrl(pp, FavoritesMgrPage.class) + "?favoriteMark=' + $F(this));");
 		for (final IModulePlugin mark : favoriteContext.getPluginRegistry().allPlugin()) {
 			final int iMark = mark.getMark();
-			select.addElements(new Option(iMark, mark.getText()).setSelected(iMark == pp
-					.getIntParameter("favoriteMark")));
+			select.addElements(new Option(iMark, mark.getText())
+					.setSelected(iMark == pp.getIntParameter("favoriteMark")));
 		}
 		return ElementList.of(select);
 	}
@@ -143,7 +140,8 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 		}
 
 		@Override
-		protected Map<String, Object> getRowData(final ComponentParameter cp, final Object dataObject) {
+		protected Map<String, Object> getRowData(final ComponentParameter cp,
+				final Object dataObject) {
 			final KVMap kv = new KVMap();
 			final Favorite favorite = (Favorite) dataObject;
 			final FavoriteItem item = favoriteContext.getFavoriteService().getFavoriteItem(favorite);
@@ -153,10 +151,8 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 			kv.add("favorites", item.getFavorites());
 			kv.put("userId", TemplateUtils.toIconUser(cp, favorite.getUserId()));
 			kv.put("createDate", favorite.getCreateDate());
-			kv.put(
-					TablePagerColumn.OPE,
-					ButtonElement.deleteBtn().setOnclick(
-							"$Actions['FavoritesMgrPage_delete']('id=" + favorite.getId() + "');"));
+			kv.put(TablePagerColumn.OPE, ButtonElement.deleteBtn()
+					.setOnclick("$Actions['FavoritesMgrPage_delete']('id=" + favorite.getId() + "');"));
 			return kv;
 		}
 	}

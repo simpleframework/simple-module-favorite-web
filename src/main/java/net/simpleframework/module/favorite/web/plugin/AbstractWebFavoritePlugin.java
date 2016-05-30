@@ -37,8 +37,8 @@ import net.simpleframework.mvc.component.ui.window.WindowBean;
  * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
-public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin implements
-		IWebFavoritePlugin {
+public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin
+		implements IWebFavoritePlugin {
 
 	@InjectCtx
 	protected static IFavoriteContext favoriteContext;
@@ -57,8 +57,8 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 	}
 
 	protected WindowBean addExistWindowBean(final PageParameter pp) {
-		pp.addComponentBean(COMPONENT_PREFIX + "ExistPage", AjaxRequestBean.class).setUrlForward(
-				AbstractMVCPage.url(FavoritesExistPage.class));
+		pp.addComponentBean(COMPONENT_PREFIX + "ExistPage", AjaxRequestBean.class)
+				.setUrlForward(AbstractMVCPage.url(FavoritesExistPage.class));
 		return pp.addComponentBean(COMPONENT_PREFIX + "ExistWindow", WindowBean.class).setPopup(true)
 				.setContentRef(COMPONENT_PREFIX + "ExistPage")
 				.setTitle($m("AbstractWebFavoritePlugin.1")).setHeight(140).setWidth(360)
@@ -101,8 +101,8 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 	}
 
 	protected int getFavoritesNum(final Object contentId) {
-		final FavoriteItem favoriteItem = favoriteContext.getFavoriteService().getFavoriteItem(
-				getMark(), contentId);
+		final FavoriteItem favoriteItem = favoriteContext.getFavoriteService()
+				.getFavoriteItem(getMark(), contentId);
 		return favoriteItem != null ? favoriteItem.getFavorites() : 0;
 	}
 
@@ -116,8 +116,8 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin imp
 	}
 
 	protected Favorite getMyFavorite(final PageParameter pp, final Object contentId) {
-		return favoriteContext.getFavoriteService()
-				.getFavorite(pp.getLoginId(), getMark(), contentId);
+		return favoriteContext.getFavoriteService().getFavorite(pp.getLoginId(), getMark(),
+				contentId);
 	}
 
 	private static AbstractWebFavoritePlugin getPlugin(final PageParameter pp) {

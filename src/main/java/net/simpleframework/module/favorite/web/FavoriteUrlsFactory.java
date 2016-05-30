@@ -28,11 +28,10 @@ public class FavoriteUrlsFactory extends UrlsCache {
 	}
 
 	public String getFavoriteUrl(final PageParameter pp,
-			final Class<? extends AbstractMVCPage> mClass, final int favoriteMark, final String params) {
-		return getUrl(
-				pp,
-				mClass,
-				StringUtils.join(new String[] {
-						favoriteMark == 0 ? null : "favoriteMark=" + favoriteMark, params }, "&"));
+			final Class<? extends AbstractMVCPage> mClass, final int favoriteMark,
+			final String params) {
+		return getUrl(pp, mClass, StringUtils.join(
+				new String[] { favoriteMark == 0 ? null : "favoriteMark=" + favoriteMark, params },
+				"&"));
 	}
 }

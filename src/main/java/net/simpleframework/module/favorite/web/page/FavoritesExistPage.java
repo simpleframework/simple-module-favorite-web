@@ -27,9 +27,9 @@ public class FavoritesExistPage extends AbstractTemplatePage implements IFavorit
 	@Override
 	public Map<String, Object> createVariables(final PageParameter pp) {
 		final int favoriteMark = Convert.toInt(pp.getParameter("favoriteMark"));
-		return ((KVMap) super.createVariables(pp)).add(
-				"myUrl",
-				((IFavoriteWebContext) favoriteContext).getUrlsFactory().getFavoriteUrl(pp,
-						MyFavoritesTPage.class, favoriteMark)).add("times", "times_" + hashId);
+		return ((KVMap) super.createVariables(pp))
+				.add("myUrl", ((IFavoriteWebContext) favoriteContext).getUrlsFactory()
+						.getFavoriteUrl(pp, MyFavoritesTPage.class, favoriteMark))
+				.add("times", "times_" + hashId);
 	}
 }

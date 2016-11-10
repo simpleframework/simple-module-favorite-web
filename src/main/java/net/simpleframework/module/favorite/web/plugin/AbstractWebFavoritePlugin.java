@@ -4,6 +4,8 @@ import static net.simpleframework.common.I18n.$m;
 
 import java.util.Date;
 
+import net.simpleframework.ado.bean.IIdBeanAware;
+import net.simpleframework.common.BeanUtils;
 import net.simpleframework.common.Convert;
 import net.simpleframework.common.ID;
 import net.simpleframework.common.web.html.HtmlUtils;
@@ -165,10 +167,15 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin
 	}
 
 	public static abstract class AbstractFavoriteContent implements IFavoriteContent {
-		private final AbstractContentBean content;
+		private final IIdBeanAware content;
 
-		public AbstractFavoriteContent(final AbstractContentBean content) {
+		public AbstractFavoriteContent(final IIdBeanAware content) {
 			this.content = content;
+		}
+
+		@Override
+		public ID getCategoryId() {
+			return null;
 		}
 
 		@Override
@@ -178,13 +185,22 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin
 
 		@Override
 		public String getTopic() {
-			return content.getTopic();
+			if (content instanceof AbstractContentBean) {
+				return ((AbstractContentBean) content).getTopic();
+			}
+			return (String) BeanUtils.getProperty(content, "topic");
 		}
 
 		@Override
 		public String getDescription() {
-			return HtmlUtils.truncateHtml(HtmlUtils.createHtmlDocument(content.getContent()), 128,
-					"<br>", false, false);
+			String desc;
+			if (content instanceof AbstractContentBean) {
+				desc = ((AbstractContentBean) content).getContent();
+			} else {
+				desc = (String) BeanUtils.getProperty(content, "content");
+			}
+			return HtmlUtils.truncateHtml(HtmlUtils.createHtmlDocument(desc), 128, "<br>", false,
+					false);
 		}
 	}
 

@@ -46,7 +46,8 @@ import net.simpleframework.mvc.template.struct.NavigationButtons;
 /**
  * Licensed under the Apache License, Version 2.0
  * 
- * @author 陈侃(cknet@126.com, 13910090885) https://github.com/simpleframework
+ * @author 陈侃(cknet@126.com, 13910090885)
+ *         https://github.com/simpleframework
  *         http://www.simpleframework.net
  */
 public class MyFavoritesTPage extends Category_ListPage implements IFavoriteContextAware {
@@ -55,6 +56,10 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 	protected void onForward(final PageParameter pp) throws Exception {
 		super.onForward(pp);
 
+		addComponents(pp);
+	}
+
+	protected void addComponents(final PageParameter pp) {
 		final TablePagerBean tablePager = addTablePagerBean(pp, "MyFavoritesTPage_tbl",
 				FavoriteList.class).setShowHead(true).setResize(false).setShowCheckbox(true);
 		tablePager.addColumn(TablePagerColumn.DATE("createDate", $m("MyFavoritesTPage.0")))

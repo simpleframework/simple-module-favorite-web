@@ -64,7 +64,7 @@ public abstract class AbstractWebFavoritePlugin extends AbstractModulePlugin
 				.setUrlForward(AbstractMVCPage.url(FavoritesExistPage.class));
 		return pp.addComponentBean(COMPONENT_PREFIX + "ExistWindow", WindowBean.class).setPopup(true)
 				.setContentRef(COMPONENT_PREFIX + "ExistPage")
-				.setTitle($m("AbstractWebFavoritePlugin.1")).setHeight(140).setWidth(360)
+				.setTitle($m("AbstractWebFavoritePlugin.1")).setHeight(150).setWidth(360)
 				.setXdelta(-120).setResizable(false);
 	}
 

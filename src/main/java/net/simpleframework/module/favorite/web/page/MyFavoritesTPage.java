@@ -5,6 +5,7 @@ import static net.simpleframework.common.I18n.$m;
 import java.util.Map;
 
 import net.simpleframework.ado.query.IDataQuery;
+import net.simpleframework.common.ID;
 import net.simpleframework.common.StringUtils;
 import net.simpleframework.common.coll.KVMap;
 import net.simpleframework.ctx.trans.Transaction;
@@ -94,7 +95,7 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 			final CategoryItem block = new CategoryItem(tMark.getText()).setHref(url);
 			block.setSelected(favoriteMark != null && favoriteMark.getMark() == tMark.getMark());
 			final int num = favoriteContext.getFavoriteService()
-					.queryFavorites(tMark.getMark(), pp.getLoginId(), null).getCount();
+					.queryFavorites(tMark.getMark(), pp.getLoginId(), null, null).getCount();
 			if (num > 0) {
 				block.setNum(new SupElement(num));
 			}
@@ -159,7 +160,12 @@ public class MyFavoritesTPage extends Category_ListPage implements IFavoriteCont
 				cp.addFormParameter("categoryId", categoryId);
 			}
 			return favoriteContext.getFavoriteService().queryFavorites(
-					favoriteMark != null ? favoriteMark.getMark() : 0, cp.getLoginId(), categoryId);
+					favoriteMark != null ? favoriteMark.getMark() : 0, cp.getLoginId(),
+					getContent_userId(cp), categoryId);
+		}
+
+		protected ID getContent_userId(final PageParameter pp) {
+			return null;
 		}
 
 		@Override

@@ -136,7 +136,8 @@ public class FavoritesMgrPage extends T1ResizedTemplatePage implements IFavorite
 			if (oMark != null) {
 				cp.addFormParameter("favoriteMark", oMark.getMark());
 			}
-			return favoriteContext.getFavoriteService().queryFavorites(oMark.getMark(), null, null);
+			return favoriteContext.getFavoriteService().queryFavorites(oMark.getMark(), null, null,
+					null);
 		}
 
 		@Override
